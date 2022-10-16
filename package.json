@@ -1,0 +1,23 @@
+{
+  "name": "friends-git-social",
+  "version": "1.0.0",
+  "description": "user-friendly and intuitive social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node or npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AASports89/friends-git-social.git"
+  },
+  "keywords": [],
+  "author": "AASports89",
+  "license": "ISC",
+  "homepage": "https://github.com/AASports89/friends-git-social#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^4.10.0",
+    "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20"
+  }
+}
