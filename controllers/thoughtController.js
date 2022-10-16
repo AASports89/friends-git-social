@@ -34,7 +34,7 @@ module.exports = {
 				!thought
 					? res
 							.status(404)
-							.json({ message: 'There is no thought with that id' })
+							.json({ message: "Error❗⛔ Failed to locate thought❗⛔" })
 					: res.json({
 							message: `Displaying: ${req.params.thoughtId}`,
 							thoughtData: thought,
@@ -43,7 +43,7 @@ module.exports = {
 			.catch((error) => res.status(500).json(error));
 	},
 
-	//Update
+//UPDATE THOUGHT//
 	updateThought(req, res) {
 		Thoughts.findOneAndUpdate(
 			{ _id: req.params.thoughtId },
@@ -51,11 +51,11 @@ module.exports = {
 			{ new: true }
 		).then((thought) =>
 			!thought
-				? res.status(404).json({ message: "Error❗⛔ Failed to locate thought❗⛔"})
+				? res.status(404).json({ message: "Error❗⛔ Failed to update thought❗⛔"})
 				: res.json(thought)
 		);
 	},
-
+//ADD REACTION//
 	addReaction(req, res) {
 		Thoughts.findOneAndUpdate(
 			{ _id: req.params.thoughtId },
@@ -69,7 +69,7 @@ module.exports = {
 		);
 	},
 
-	//Delete
+//DELETE THOUGHT//
 	deleteOneThought(req, res) {
 		Thoughts.findOneAndDelete({ _id: req.params.thoughtId })
 			.then((thought) =>
@@ -78,13 +78,13 @@ module.exports = {
 							.status(404)
 							.json({ message: "Error❗⛔ Thought ID does not exist❗⛔" })
 					: res.json({
-							message: `Succesfully deleted: ${req.params.thoughtId}`,
+							message: `Warning❗⛔ Successfully deleted ❌: ${req.params.thoughtId}`,
 							thoughtData: thought,
 					  })
 			)
 			.catch((error) => res.status(500).json(error));
 	},
-
+//DELETE REACTION//
 	deleteReaction(req, res) {
 		Thoughts.findOneAndUpdate(
 			{ _id: req.params.thoughtId },
