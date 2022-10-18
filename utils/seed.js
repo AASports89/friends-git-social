@@ -1,6 +1,6 @@
 const connection = require("../config/connection");
 const { User, Thought } = require("../models");
-const { getRandomUser, getRandomFriends, getRandomReactions, getReactionBody, getRandomThoughts, getRandomThought } = require("./data");
+const { getRandomUser, getRandomFriends, getRandomReactions, getRandomThoughts, getRandomThought } = require("./data");
 
 connection.on("error", (err) => err);
 
@@ -17,16 +17,15 @@ connection.once("open", async () => {
 for (let i = 0; i < 10; i++) {
 //GET SOME RANDOM THOUGHTS & REACTIONS USING HELPER FUNCTION --> IMPORTED VIA ./DATA//
 
-const reactionBody = getReactionBody(5);
+const reactions = getRandomReactions(5);
     const thoughtText = getRandomThoughts();
         thought.push({
             thoughtText,
-            reactionBody,
+            reactions,
         });
 
 const friends = getRandomFriends(5);
 const thoughts = getRandomThought(5);
-const reactions = getRandomReactions(5);
 const userInfo = getRandomUser();
 const username = userInfo.split(' ')[0];
 const email = userInfo.split(' ')[1];

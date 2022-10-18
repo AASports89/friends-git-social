@@ -1,4 +1,4 @@
-const name =
+const usernames =
 [
   "darealmj23",
   "mvpkb",
@@ -22,7 +22,7 @@ const name =
   "davidrobinson",
 ];
 
-const mail =
+const emails =
 [
   "mj23@gmail.com",
   "kb24@gmail.com",
@@ -46,7 +46,7 @@ const mail =
   "rodman@gmail.com",
 ];
 
-const reacts = 
+const reactions = 
 [
   "Cool...!",
   "Interesting...!",
@@ -90,19 +90,15 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 //GET RANDOM USERNAME + EMAIL --> USER INFO//
 const getRandomUser = () =>
-  `${getRandomArrItem(name)} ${getRandomArrItem(mail)}`;
+  `${getRandomArrItem(usernames)} ${getRandomArrItem(emails)}`;
 
 //GET RANDOM FRIENDS --> USER OBJECT//
 const getRandomFriends = () =>
-  `${name}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
+  `${usernames}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
 //GET RANDOM THOUGHTS --> USER OBJECT//
 const getRandomThoughts = () =>
   `${getRandomArrItem(thoughts)}`;
-
-//GET RANDOM REACTIONS --> THOUGHT OBJECT//
-const getReactionBody = () =>
-  `${getRandomArrItem(reacts)}`;
 
 //GENERATE RANDOM THOUGHTS --> USER OBJECT//
 const getRandomThought = (int) => {
@@ -119,11 +115,11 @@ const getRandomReactions = (int) => {
   const results = [];
   for (let i = 0; i < int; i++) {
     results.push({
-      reactionBody: getRandomArrItem(reacts),
+      reactionBody: getRandomArrItem(reactions),
     });
   }
   return results;
 };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomUser, getRandomFriends, getRandomThought, getRandomThoughts, getRandomReactions, getReactionBody };
+module.exports = { getRandomUser, getRandomFriends, getRandomThought, getRandomThoughts, getRandomReactions };

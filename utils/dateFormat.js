@@ -1,6 +1,6 @@
 //********************* FORMAT DATE/TIME STAMP **********************//
 	module.exports = {
-		format_date: (date) => {
+		formatDate: (date) => {
 			return date.toLocaleDateString("en-US", {
 				year: "numeric",
 				month: "long",

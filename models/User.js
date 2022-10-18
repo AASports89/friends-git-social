@@ -1,4 +1,4 @@
-const { Schema, Types, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -17,7 +17,12 @@ const userSchema = new Schema(
       required: true,
       max_length: 50,
     },
-    thoughts: [thoughtSchema],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
   },
   {
     toJSON: {
