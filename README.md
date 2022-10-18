@@ -16,6 +16,7 @@ Through the use of a dynamic ```API``` **Friends Git Social** is an user-friendl
   * [User Story](#user-story)
   * [Acceptance Criteria](#acceptance-criteria)
   * [Getting Started](#getting-started)
+  * [Installation and Running Locally](#installation-and-running-locally)
   * [Mock Up](#mock-up)
   * [Video Walkthrough](#video-walkthrough)
   * [GitHUB Repository](#github-repository)
@@ -207,6 +208,9 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 * ```POST``` to create a reaction stored in a single thought's ```reactions``` array field
 
 * ```DELETE``` to pull and remove a reaction by the reaction's ```reactionId``` value
+
+## Installation and Running Locally
+---
 
 > **Important:** Once, the source code has been cloned from the repository @https://github.com/AASports89/friends-git-social & the ```MongoDB``` database set up:
 
