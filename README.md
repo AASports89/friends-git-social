@@ -263,7 +263,7 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 ---
 > **Note**: The following walkthrough video demonstrates the ```GET```,```POST```, ```PUT``` & ```DELETE``` routes for **"api/users"** & **"api/thoughts"** and the ```POST``` & ```DELETE``` routes for **"api/users/friends"** & **"api/thoughts/reactions"** all being tested in ```Insomnia```:
 
-https://aasports89.github.io/e-commerce-git-app/
+> https://aasports89.github.io/friends-git-social/
 
 ## GitHUB Repository
 ---
