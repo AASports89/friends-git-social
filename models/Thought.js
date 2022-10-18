@@ -16,17 +16,17 @@ const thoughtSchema = new Schema(
       required: true,
       max_length: 50,
     },
-    createdAt: {
-			type: Date,
-			default: Date.now(),
-			get: (date) => formatDate(date),
-    },
-    users: [
+    userId: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
+    createdAt: {
+			type: Date,
+			default: Date.now(),
+			get: (date) => formatDate(date),
+    },
     reactions: [reactionSchema]
   },
   {
