@@ -11,7 +11,7 @@ const reactions = async (thoughtId) =>
           $unwind: "$reactions",
         },
         {
-          $group: { _id: thoughtId, totalReactions: { $count: "$reactions.thought"} },
+          $group: { _id: thoughtId, totalReactions: { $count: "$reactions.thoughtText"} },
           },
       ]);
 

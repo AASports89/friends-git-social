@@ -1,13 +1,12 @@
 //********************* FORMAT DATE/TIME STAMP **********************//
 	module.exports = {
-		formatDate: (date) => {
-			const options = {
-			year: "numeric",
-			month: "short",
-			day: "numeric",
-			hour: "numeric",
-			minute: "numeric",
-			};
-		return new Date(date).toLocaleDateString("us-en", options);
+		format_date: (date) => {
+			return date.toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+				hour: "numeric",
+				minute: "numeric",
+			});
 		},
 	};
