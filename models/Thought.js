@@ -11,6 +11,11 @@ const thoughtSchema = new Schema(
       minlength: 10,
       default: "Check this out...!"
     },
+    username: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },
     createdAt: {
 			type: Date,
 			default: Date.now(),

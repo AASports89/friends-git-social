@@ -18,22 +18,23 @@ for (let i = 0; i < 10; i++) {
 //GET SOME RANDOM THOUGHTS & REACTIONS USING HELPER FUNCTION --> IMPORTED VIA ./DATA//
 
 const reactions = getRandomReactions(5);
-    const thoughtText = getRandomThoughts();
-        thought.push({
-            thoughtText,
-            reactions,
-        });
 
 const friends = getRandomFriends(5);
 const thoughts = getRandomThought(5);
-const userInfo = getRandomUser();
-const username = userInfo.split(' ')[0];
-const email = userInfo.split(' ')[1];
+const user = getRandomUser();
+const username = user.split(' ')[0];
+const email = user.split(' ')[1];
     users.push({
         username,
         email,
         friends,
         thoughts,
+        reactions,
+    });
+const thoughtText = getRandomThoughts();
+    thought.push({
+        username,
+        thoughtText,
         reactions,
     });
 }
