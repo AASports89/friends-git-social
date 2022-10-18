@@ -138,7 +138,7 @@ const getRandomFriends = (int) => {
   const results = [];
     for (let i = 0; i < int; i++) {
       results.push({
-        friend: getRandomArrItem(friends),
+        friends: getRandomArrItem(friends),
       });
     }
     return results;

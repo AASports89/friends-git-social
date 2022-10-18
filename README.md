@@ -249,19 +249,19 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 
 > **Note:** The following animation shows the application's ```POST``` & ```DELETE``` routes associated with "api/user/friends" using ```Insomnia```:
 
-> **'POST' & 'DELETE' "api/users/friends" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/users/friends routes are depicted.](./images/GET-ONE.gif)
+> **'POST' & 'DELETE' "api/users/friends" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/users/friends routes are depicted.](./images/api-user-friend-routes.gif)
 
 > **Note:** The following animation shows the application's ```GET```, ```POST```, ```PUT``` & ```DELETE``` routes associated with "api/thoughts" using ```Insomnia```:
 
-> **'GET', 'POST', 'PUT' & 'DELETE' "api/thoughts" routes:** ![In ```Insomnia```, tests for the ```GET```, ```POST```, ```PUT``` & ```DELETE``` api/thoughts routes are depicted.](./images/DEL-ADD-UPDT.gif)
+> **'GET', 'POST', 'PUT' & 'DELETE' "api/thoughts" routes:** ![In ```Insomnia```, tests for the ```GET```, ```POST```, ```PUT``` & ```DELETE``` api/thoughts routes are depicted.](./images/api-thoughts-routes.gif)
 
 > **Note:** The following animation shows the application's ```POST``` & ```DELETE``` routes associated with "api/thoughts/reactions" using ```Insomnia```:
 
-> **'POST' & 'DELETE' "api/user/friends" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/thoughts/reactions routes are depicted.](./images/GET-ONE.gif)
+> **'POST' & 'DELETE' "api/thoughts/reactions" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/thoughts/reactions routes are depicted.](./images/api-thoughts-reaction-routes.gif)
 
 ## Video Walkthrough
 ---
-> **Note**: The following walkthrough video demonstrates the ```POST```, ```PUT```, and ```DELETE``` routes for products & tags being tested in ```Insomnia```:
+> **Note**: The following walkthrough video demonstrates the ```GET```,```POST```, ```PUT``` & ```DELETE``` routes for **"api/users"** & **"api/thoughts"** and the ```POST``` & ```DELETE``` routes for **"api/users/friends"** & **"api/thoughts/reactions"** all being tested in ```Insomnia```:
 
 https://aasports89.github.io/e-commerce-git-app/
 

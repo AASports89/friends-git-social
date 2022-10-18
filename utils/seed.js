@@ -1,5 +1,5 @@
 const connection = require("../config/connection");
-const { User, Thoughts } = require("../models");
+const { User, Thought } = require("../models");
 const { getRandomUser, getRandomFriends, getRandomReactions, getRandomThoughts, getRandomThought } = require("./data");
 
 connection.on("error", (err) => err);
@@ -9,7 +9,7 @@ connection.once("open", async () => {
 //DROP EXISTING USERS//
     await User.deleteMany({});
 //DROP EXISTING THOUGHTS//
-    await Thoughts.deleteMany({});
+    await Thought.deleteMany({});
 //EMPTY ARRAY TO HOLD USERS//
     const users = [];
     const thoughts = [];
@@ -41,7 +41,7 @@ const thoughtText = getRandomThoughts();
 await User.collection.insertMany(users);
 
 //THOUGHTS TO THE COLLECTION --> AWAIT RESULTS//
-await Thoughts.collection.insertMany(thoughts);
+await Thought.collection.insertMany(thoughts);
 
 //LOGOUT SEED DATA --> INDICATES WHAT SHOULD APPEAR//
     console.table(users);

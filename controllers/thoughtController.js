@@ -1,9 +1,9 @@
-const { User, Thoughts } = require("../models");
+const { User, Thought } = require("../models");
 
 module.exports = {
 //GET ALL THOUGHTS//
   getThoughts(req, res) {
-    Thoughts.find()
+    Thought.find()
       .populate({ path: "reactions", select: "reactionBody" })
       .then((thoughts) => res.json(thoughts))
         .catch((err) => res.status(500).json(err));
@@ -11,12 +11,12 @@ module.exports = {
 
 //GET SINGLE THOUGHT VIA ID//
   getSingleThought(req, res) {
-    Thoughts.find({ _id: req.params.thoughtId })
+    Thought.find({ _id: req.params.thoughtId })
       .then((thought) => {
         !thought
           ? res.status(404).json({ message: "Error❗⛔ Thought ID does not exist❗⛔"  })
           : res.json({message: `Displaying: ${req.params.thoughtId}`,
-            thoughtText: thought,
+            thought: thought,
       });
     })
   .catch((error) => res.status(500).json(error));
@@ -24,7 +24,7 @@ module.exports = {
 
 //CREATE THOUGHT//
   createThought(req, res) {
-    Thoughts.create(req.body)
+    Thought.create(req.body)
     .then(thought => {
       console.log(thought);
 				!thought
@@ -44,7 +44,7 @@ module.exports = {
   
   //DELETE THOUGHT//
   deleteThought(req, res) {
-    Thoughts.findByIdAndDelete({ _id: req.params.thoughtId })
+    Thought.findByIdAndDelete({ _id: req.params.thoughtId })
     .then((thought) =>
     !thought
       ? res.status(404).json({ message: "Error❗⛔ Thought ID does not exist❗⛔" })
@@ -56,7 +56,7 @@ module.exports = {
 
 //UPDATE THOUGHT//
   updateThought(req, res) {
-    Thoughts.findOneAndUpdate(
+    Thought.findOneAndUpdate(
 			{ _id: req.params.thoughtId },
 			{ $set: { thoughtText: req.body.thoughtText } },
 			{ new: true }
@@ -69,7 +69,7 @@ module.exports = {
 
 //ADD REACTION --> THOUGHT//
   addReactionToAThought(req, res) {
-    Thoughts.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
 			{ $push: { reactions: req.body } }
 		).then((reaction) =>
@@ -83,7 +83,7 @@ module.exports = {
 
 //REMOVE REACTION --> THOUGHT//
   removeReactionFromAThought(req, res) {
-    Thoughts.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
 			{ $pull: { reactions: { reactionId: req.params.reactionId } } }
 		).then((reaction) =>
