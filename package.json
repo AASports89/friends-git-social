@@ -4,7 +4,8 @@
   "description": "user-friendly and intuitive social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.",
   "main": "server.js",
   "scripts": {
-    "start": "node or npm start"
+    "start": "node or npm start",
+    "seed": "node utils/seed.js"
   },
   "repository": {
     "type": "git",

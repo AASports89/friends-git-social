@@ -1,103 +1,120 @@
-const { Thoughts, Users } = require("../models");
+const { ObjectId } = require('mongoose').Types;
+const { User, Thought } = require("../models");
+
+const reactions = async (thoughtId) =>
+  Thought.aggregate([
+        
+        {
+          $match: { _id: ObjectId(thoughtId) },
+        },
+        {
+          $unwind: "$reactions",
+        },
+        {
+          $group: { _id: thoughtId, totalReactions: { $count: "$reactions.thought"} },
+          },
+      ]);
 
 module.exports = {
+//GET ALL THOUGHTS//
+getThoughts(req, res) {
+  Thought.find()
+  .then((thoughts) => res.json(thoughts))
+      .catch((err) => res.status(500).json(err));
+  },
+
+//GET SINGLE THOUGHT VIA ID//
+  getSingleThought(req, res) {
+    Thought.findOne({_id: req.params.thoughtId})
+    .select('-__v')
+    .then(async (thought) =>
+      !thought
+        ? res.status(404).json({ message: "Error❗⛔ Thought ID does not exist❗⛔"  })
+        : res.json({
+          thought,
+          reactions: await reactions(req.params.thoughtId),
+        })
+    )
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
+},
 //CREATE THOUGHT//
-	createThought(req, res) {
-		Thoughts.create(req.body)
-			.then((thought) => {
-				console.log(thought);
-				!thought
-					? res.status(404).json({ message: "Error❗⛔ Failed to create thought❗⛔"})
-					: Users.findOneAndUpdate(
-							{ username: thought.username },
-							{ $push: { thoughts: thought._id } },
-							{ new: true }
-					  ).then((user) => console.log(`Success✅ Thought has been added to ${user}`));
-				res.json(thought);
-			})
-			.catch((error) => {
-				console.log(error);
-				return res.status(500).json(error);
-			});
-	},
-//GET THOUGHTS//
-	getThoughts(req, res) {
-		Thoughts.find({})
-			.populate({ path: "reactions", select: "reactionBody" })
-			.then((thoughts) => res.json(thoughts))
-			.catch((error) => res.status(500).json(error));
-	},
-//GET SINGLE THOUGHT//
-	getThoughtById(req, res) {
-		Thoughts.find({ _id: req.params.thoughtId })
-			.then((thought) => {
-				!thought
-					? res
-							.status(404)
-							.json({ message: "Error❗⛔ Failed to locate thought❗⛔" })
-					: res.json({
-							message: `Displaying: ${req.params.thoughtId}`,
-							thoughtData: thought,
-					  });
-			})
-			.catch((error) => res.status(500).json(error));
-	},
-
+  createThought(req, res) {
+    Thought.create(req.body)
+    .then(thought => {
+      User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $push: { thoughts: thought._id } },
+        { new: true },
+        )
+      .then((thought) => res.json(thought))
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
+  })
+},
+  //DELETE THOUGHT//
+  deleteThought(req, res) {
+    Thought.findByIdAndDelete({ _id: req.params.thoughtId })
+    .then((thought) =>
+    !thought
+      ? res.status(404).json({ message: "Error❗⛔ Thought ID does not exist❗⛔" })
+      : User.deleteMany({ _id: { $in: thought.users } })
+  )
+  .then(() => res.json({ message: "Warning❗⛔ Thought & User deleted❗❌"}))
+  .catch((err) => res.status(500).json(err));
+},
 //UPDATE THOUGHT//
-	updateThought(req, res) {
-		Thoughts.findOneAndUpdate(
-			{ _id: req.params.thoughtId },
-			{ $set: { thoughtText: req.body.thoughtText } },
-			{ new: true }
-		).then((thought) =>
-			!thought
-				? res.status(404).json({ message: "Error❗⛔ Failed to update thought❗⛔"})
-				: res.json(thought)
-		);
-	},
-//ADD REACTION//
-	addReaction(req, res) {
-		Thoughts.findOneAndUpdate(
-			{ _id: req.params.thoughtId },
-			{ $push: { reactions: req.body } }
-		).then((reaction) =>
-			!reaction
-				? res
-						.status(404)
-						.json({ message: "Error❗⛔ Failed to locate thought via ID❗⛔"})
-				: res.json(reaction)
-		);
-	},
-
-//DELETE THOUGHT//
-	deleteOneThought(req, res) {
-		Thoughts.findOneAndDelete({ _id: req.params.thoughtId })
-			.then((thought) =>
-				!thought
-					? res
-							.status(404)
-							.json({ message: "Error❗⛔ Thought ID does not exist❗⛔" })
-					: res.json({
-							message: `Warning❗⛔ Successfully deleted ❌: ${req.params.thoughtId}`,
-							thoughtData: thought,
-					  })
-			)
-			.catch((error) => res.status(500).json(error));
-	},
-//DELETE REACTION//
-	deleteReaction(req, res) {
-		Thoughts.findOneAndUpdate(
-			{ _id: req.params.thoughtId },
-			{ $pull: { reactions: { reactionId: req.params.reactionId } } }
-		).then((reaction) =>
-			!reaction
-				? res
-						.status(404)
-						.json({ message: "Error❗⛔ Failed to locate reaction via ID❗⛔" })
-				: res.json({
-						message: `Warning❗⛔ Successfully deleted ❌: ${req.params.reactionId}`,
-						reactionData: reaction,
-				  })
-		);
-	},
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, new: true },
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "Error❗⛔ Thought ID does not exist❗⛔" })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+//ADD REACTION --> THOUGHT//
+  addReactionToAThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $push: {reactions: req.body }},
+      { new: true, runValidators: true }
+    )
+    .then((thought) => {
+      if (!thought) {
+        res.status(404).json({ message:  "Error❗⛔ Reaction ID does not exist❗⛔" });
+        return;
+      }
+      res.json(thought)
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    });
+  },
+//REMOVE REACTION --> THOUGHT//
+  removeReactionFromAThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: {reactions: {reactionId : params.reactionId}}},
+      { new: true, runValidators: true }
+    )
+    .then((thought) => {
+      if (!thought) {
+        res.status(404).json({ message:  "Error❗⛔ Failed to find a reaction❗⛔"});
+        return;
+      }
+      res.json(thought)
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    });
+  }
 };

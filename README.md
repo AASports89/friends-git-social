@@ -153,8 +153,9 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 
 * ```POST``` a new user:
 
+### Sample Data
+---
 ```json
-// example data
 {
   "username": "lernantino",
   "email": "lernantino@gmail.com"
@@ -185,8 +186,9 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 
 * ```POST``` to create a new thought (don't forget to push the created thought's ```_id``` to the associated user's ```thoughts``` array field)
 
+### Sample Data
+---
 ```json
-// example data
 {
   "thoughtText": "Here's a cool thought...",
   "username": "lernantino",
@@ -206,7 +208,7 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 
 * ```DELETE``` to pull and remove a reaction by the reaction's ```reactionId``` value
 
-> **Important:** Once, the source code has been cloned from the repository @https://github.com/AASports89/friends-git-social & the ```MySQL``` database set up:
+> **Important:** Once, the source code has been cloned from the repository @https://github.com/AASports89/friends-git-social & the ```MongoDB``` database set up:
 
  Enter the following:
 
@@ -237,7 +239,7 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
  ```
  npm run start
  ```
- in the terminal cmd to install required packages & run **Friends Git Social** locally for ```Insomnia```.
+ in the terminal cmd to install required packages & run **Friends Git Social** locally for testing routes using ```Insomnia```.
 
 ## Mock-Up
 ---
