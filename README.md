@@ -243,17 +243,21 @@ This will not be a model, but rather will be used as the ```reaction``` field's 
 
 ## Mock-Up
 ---
-> **Note:**  The following animation shows the application's ```GET``` routes to return all categories, all products, and all tags being tested in ```Insomnia```:
+> **Note:**  The following animation shows the application's ```GET```, ```POST```, ```PUT``` & ```DELETE``` routes associated with "api/users" using ```Insomnia```:
 
-> **'GET' all categories, products & tags:** ![In ```Insomnia```, the user tests “GET tags,” “GET Categories,” and “GET All Products.”.](./images/GET-ALL.gif)
+> **'GET', 'POST', 'PUT' & 'DELETE' "api/users" routes:** ![In ```Insomnia```, tests for the ```GET```, ```POST```, ```PUT``` & ```DELETE``` api/users routes are depicted.](./images/api-user-routes.gif)
 
-> **Note:** The following animation shows the application's GET routes to return a single category, a single product, and a single tag being tested in ```Insomnia```:
+> **Note:** The following animation shows the application's ```POST``` & ```DELETE``` routes associated with "api/user/friends" using ```Insomnia```:
 
-> **'GET' single category, product & tag:** ![In ```Insomnia```, the user tests “GET tag by id,” “GET Category by ID,” and “GET One Product.”](./images/GET-ONE.gif)
+> **'POST' & 'DELETE' "api/users/friends" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/users/friends routes are depicted.](./images/GET-ONE.gif)
 
-> **Note:** The following animation shows the application's ```POST```, ```PUT```, and ```DELETE``` routes for categories being tested in ```Insomnia```:
+> **Note:** The following animation shows the application's ```GET```, ```POST```, ```PUT``` & ```DELETE``` routes associated with "api/thoughts" using ```Insomnia```:
 
-> **'DELETE', 'ADD' & 'UPDATE' category:** ![In ```Insomnia```, the user tests “DELETE Category by ID,” “CREATE Category,” and “UPDATE Category.”](./images/DEL-ADD-UPDT.gif)
+> **'GET', 'POST', 'PUT' & 'DELETE' "api/thoughts" routes:** ![In ```Insomnia```, tests for the ```GET```, ```POST```, ```PUT``` & ```DELETE``` api/thoughts routes are depicted.](./images/DEL-ADD-UPDT.gif)
+
+> **Note:** The following animation shows the application's ```POST``` & ```DELETE``` routes associated with "api/thoughts/reactions" using ```Insomnia```:
+
+> **'POST' & 'DELETE' "api/user/friends" routes:** ![In ```Insomnia```, tests for the ```POST``` & ```DELETE``` api/thoughts/reactions routes are depicted.](./images/GET-ONE.gif)
 
 ## Video Walkthrough
 ---

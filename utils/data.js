@@ -1,25 +1,25 @@
 const usernames =
 [
-  "darealmj23",
-  "mvpkb",
-  "vipkg",
-  "rayallen",
-  "timduncan",
-  "stevenash",
-  "finalsmvp",
-  "floorgeneral",
-  "superman34",
-  "mrclutch",
-  "alleniverson",
-  "roberthorry",
-  "claymatthews",
-  "mrwonderful",
-  "bigshotbob",
-  "wiltdastilt",
-  "byronscott",
-  "dennisrodman",
-  "benwallace",
-  "davidrobinson",
+  "da_real_mj23",
+  "mvp_kb",
+  "vip_kg",
+  "ray_allen",
+  "tim_duncan",
+  "steve_nash",
+  "finals_mvp",
+  "floor_general",
+  "superman_34",
+  "mr_clutch",
+  "allen_iverson",
+  "robert_horry",
+  "clay_matthews",
+  "mr_wonderful",
+  "big_shot_bob",
+  "wilt_da_stilt",
+  "byron_scott",
+  "dennis_rodman",
+  "ben_wallace",
+  "david_robinson",
 ];
 
 const emails =
@@ -46,6 +46,30 @@ const emails =
   "rodman@gmail.com",
 ];
 
+const friends = 
+[
+  "shaq_34",
+  "lbj_06",
+  "tony_parker",
+  "steph_curry",
+  "jason_will",
+  "webber_04",
+  "divac_33",
+  "penny_01",
+  "chuck_barkley",
+  "s_pippen33",
+  "kobe_08",
+  "black_mamba",
+  "kareem_33",
+  "baylor_23",
+  "aaron_rodgers",
+  "matthew_staff",
+  "beast_mode",
+  "russell_wilson",
+  "patriot_tom",
+  "dallas_cowboy",
+]
+
 const reactions = 
 [
   "Cool...!",
@@ -58,16 +82,16 @@ const reactions =
   "Scary...!",
   "Unpredictable...!",
   "Crazy...!",
-  "Cool...!",
-  "Interesting...!",
-  "Incredible...!",
-  "Boring...!",
-  "Funny...!",
-  "Fantastic...!",
-  "Superb...!",
-  "Scary...!",
-  "Unpredictable...!",
-  "Crazy...!",
+  "Very good...!",
+  "Foolish...!",
+  "Contemporary...!",
+  "Correct...!",
+  "Wrong reaction...!",
+  "Fancy...!",
+  "Dull...!",
+  "Creepy...!",
+  "Constructive...!",
+  "Critical...!",
 ]
 
 const thoughts =
@@ -82,23 +106,43 @@ const thoughts =
   "Look at all of the reactions...!",
   "Add a thought...then a reaction...!",
   "Looking forward to tonight's event...!",
+  "Tomorrow's event will be great...!",
+  "How long is the event going to last...?",
+  "Thoughts are important...!",
+  "How many reactions did you see...?",
+  "Events are the perfect places for networking...!",
+  "Combine the thoughts with reactions...!",
+  "Interpret the reactions as you please...!",
+  "How many events will there be...?",
+  "Congratulations on the win...!",
+  "Why did they lose yesterday...?",
 ];
-
 
 //GET RANDOM ITEM GIVEN AN ARRAY//
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-//GET RANDOM USERNAME + EMAIL --> USER INFO//
+//GET RANDOM USERNAME + EMAIL --> USERS//
 const getRandomUser = () =>
   `${getRandomArrItem(usernames)} ${getRandomArrItem(emails)}`;
-
-//GET RANDOM FRIENDS --> USER OBJECT//
-const getRandomFriends = () =>
-  `${usernames}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
 //GET RANDOM THOUGHTS --> USER OBJECT//
 const getRandomThoughts = () =>
   `${getRandomArrItem(thoughts)}`;
+
+//GET RANDOM FRIENDS --> USER OBJECT//
+const getFriends = () =>
+  `${getRandomArrItem(friends)}`;
+
+//GENERATE RANDOM FRIENDS --> USER OBJECT//
+const getRandomFriends = (int) => {
+  const results = [];
+    for (let i = 0; i < int; i++) {
+      results.push({
+        friend: getRandomArrItem(friends),
+      });
+    }
+    return results;
+  };
 
 //GENERATE RANDOM THOUGHTS --> USER OBJECT//
 const getRandomThought = (int) => {
@@ -122,4 +166,4 @@ const getRandomReactions = (int) => {
 };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomUser, getRandomFriends, getRandomThought, getRandomThoughts, getRandomReactions };
+module.exports = { getRandomUser, getFriends, getRandomFriends, getRandomThought, getRandomThoughts, getRandomReactions };
